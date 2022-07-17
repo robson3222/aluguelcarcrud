@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CarroService } from './shared/carro.service';
 import { Carro } from './shared/carro';
 
@@ -19,20 +19,11 @@ export class CarrosController {
             return this.carroService.getById(id);
         }
 
-        create(corro: Carro) {
-            let lastId = 0;
-            if (this.carros.lenght > 0) {
-                lastId = this.carros[this.carros.lenght -1].id;
-            }
+       @Post()
+       async create(@Body() carro: Carro): Promise<Carro> {
+        return this.carroService.create(carro);
+       }
 
-            Carro.id = lastId + 1;
-            this.carros.push(carro);
-
-            return Carro;
-
-
-   
-
-        }
+        
     
 }
