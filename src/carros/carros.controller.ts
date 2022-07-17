@@ -18,5 +18,21 @@ export class CarrosController {
         async getById(@Param('id') id: number) : Promise<Carro> {
             return this.carroService.getById(id);
         }
+
+        create(corro: Carro) {
+            let lastId = 0;
+            if (this.carros.lenght > 0) {
+                lastId = this.carros[this.carros.lenght -1].id;
+            }
+
+            Carro.id = lastId + 1;
+            this.carros.push(carro);
+
+            return Carro;
+
+
+   
+
+        }
     
 }
