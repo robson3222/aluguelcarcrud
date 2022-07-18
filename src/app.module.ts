@@ -5,15 +5,14 @@ import { CarrosModule } from './carros/carros.module';
 
 
 import { MongooseModule } from '@nestjs/mongoose';
-import { CarrosController } from './carros/carros.controller';
-import { CarroService } from './carros/shared/carro.service';
+
+
 
 @Module({
   imports: [ 
-    MongooseModule.forRoot(''),
-    CarrosController
-  ],
+    MongooseModule.forRoot('mongodb://localhost/nestera'),
+    CarrosModule],
   controllers: [AppController],
-  providers: [AppService, CarroService],
+  providers: [AppService],
 })
 export class AppModule {}

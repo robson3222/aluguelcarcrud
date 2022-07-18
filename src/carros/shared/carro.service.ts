@@ -1,18 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { Carro } from './carro';
 
+import {InjectionModel} from '@nestjs/common';
+import {Module} from 'mongoose';
+
 @Injectable()
 export class CarroService {
-    carros: Carro[] = [
-        {id: 1, marca:'volks', alugado:true, nome:'gol', local:'campinas sp'},
-        {id: 2, marca:'fiat', alugado:false, nome:'uno', local: 'campinas sp'},
-        
-    ];
+
+    constructor(@InjectModel('Carro') private readonly carroModel Model<Carro){}
+    
+    
 
 
-
-getAll(){
-    return this.carros;
+async getAll(){
+    return await this.carroModel.find().exec();
 
 }
 getById(id: number){
